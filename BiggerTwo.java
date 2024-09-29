@@ -1,33 +1,52 @@
 import java.util.Scanner;
-import java.util.Arrays;
 
-public class BiggerTwo {
+public class BiggerTwo{
     public static void main(String[] args){
+
         Scanner in = new Scanner(System.in);
 
-        System.out.print("Enter 2 elements for the first array: ");
-        int[] firstArray = new int[2];
-        firstArray[0]= in.nextInt();
-        firstArray[1]= in.nextInt();
-        System.out.print("Enter 2 elements for the Second array: ");
-        int[] secondArray = new int[2];
-        secondArray[0]= in.nextInt();
-        secondArray[1]= in.nextInt();
+        System.out.println("Enter the number of elements in the first array: ");
+        int size1 = in.nextInt();
+        int[] numbers1 = new int[size1];
 
-        int[] result = bigger(firstArray, secondArray);
-        System.out.println("Array with the larger sum: " + Arrays.toString(result));
+        System.out.println("Enter the elements of the first array: ");
+        for (int i = 0; i < size1; i++) {
+            numbers1[i] = in.nextInt();
+        }
+
+
+        System.out.println("Enter the number of elements in the second array: ");
+        int size2 = in.nextInt();
+        int[] numbers2 = new int[size2];
+
+        System.out.println("Enter the elements of the second array: ");
+        for (int i = 0; i < size2; i++) {
+            numbers2[i] = in.nextInt();
+        }
+
+
+        int[] result = biggerTwo(numbers1, numbers2);
+        System.out.println("Array with the larger sum: ");
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
 
         in.close();
     }
-    public static int[] bigger(int[]firstArray,int[]secondArray){
-        int sumA = firstArray[0]+firstArray[1];
-        int sumB = secondArray[0]+secondArray[1];
 
-        if (sumA>=sumB){
-            return firstArray;
+    public static int[] biggerTwo(int[] array1, int[] array2) {
+        int sum1 = sumArray(array1);
+        int sum2 = sumArray(array2);
+
+
+        return (sum1 >= sum2) ? array1 : array2;
+    }
+
+    public static int sumArray(int[] array) {
+        int sum = 0;
+        for (int num : array) {
+            sum += num;
         }
-        else {
-            return secondArray;
-        }
+        return sum;
     }
 }
