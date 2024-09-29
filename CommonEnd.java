@@ -14,12 +14,12 @@ public class CommonEnd {
         System.out.println("Enter the number of elements in the Second array:");
         int sizeB = in.nextInt();
         int[] arrayB = new int[sizeB];
-        System.out.println("Enter the elements of the first array:");
+        System.out.println("Enter the elements of the second array:");
         for (int i = 0; i < sizeB; i++) {
             arrayB[i] = in.nextInt();
         }
 
-        boolean result = End(arrayA, arrayB);
+        boolean result = arraysEnd(arrayA, arrayB);
         System.out.println("Do the arrays have the same first or last element? " + result);
 
         in.close();
@@ -30,7 +30,7 @@ public class CommonEnd {
     if the two arrays that user enter them are tha same first element or last element
     will return true
      */
-    public static boolean End(int[] arrayA,int[] arrayB){
+    public static boolean arraysEnd(int[] arrayA,int[] arrayB){
 
         return (arrayA[0] == arrayB[0]) || (arrayA[arrayA.length - 1] == arrayB[arrayB.length - 1]);
     }
