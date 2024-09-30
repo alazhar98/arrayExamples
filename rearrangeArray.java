@@ -33,7 +33,7 @@ public class rearrangeArray {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter array elements (space-separated): ");
+        System.out.print("Enter array elements that contains numbers 3 and 4 : ");
         String[] inputArray = scanner.nextLine().split(" ");
         int[] nums = new int[inputArray.length];
 
