@@ -15,7 +15,7 @@ public class FrontPiece {
             array[i] = in.nextInt();
         }
 
-        int[] resultA = FPiece(array);
+        int[] resultA = getFrontPiece(array);
 
         System.out.println("Front piece of the array: " + Arrays.toString(resultA));
 
@@ -27,7 +27,7 @@ result = new array with maximum of two index only
 import the value for the new array by for loop for only 2 index
 
  */
-    public static int[] FPiece(int[] nums) {
+    public static int[] getFrontPiece(int[] nums) {
 
         int[] result = new int[Math.min(nums.length, 2)];
 
