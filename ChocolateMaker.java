@@ -1,8 +1,8 @@
 public class ChocolateMaker {
     public static void main(String[] args) {
-        System.out.println(makeChocolate(4, 1, 9));
-        System.out.println(makeChocolate(4, 1, 10));
-        System.out.println(makeChocolate(4, 1, 7));
+        System.out.println(makeChocolate(1, 4, 9));
+        System.out.println(makeChocolate(1, 4, 10));
+        System.out.println(makeChocolate(1, 4, 7));
     }
     /*
     find the minimum between big and the goal/5 after that i multiply the number i get by 5
@@ -18,7 +18,7 @@ public class ChocolateMaker {
 
         int remainingWeight = goal - bigWeight;
 
-        if (remainingWeight <= small) {
+        if (remainingWeight > small) {
             return -1;
         }
 
