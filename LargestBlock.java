@@ -7,7 +7,7 @@ public class LargestBlock {
         System.out.print("Enter a string: ");
         String input = in.nextLine();
 
-        int maxBlockLength = maxBlock(input);
+        int maxBlockLength = findingMaxBlock(input);
         System.out.println("The length of the largest block is: " + maxBlockLength);
 
         in.close();
@@ -16,9 +16,9 @@ public class LargestBlock {
     i initialize maxLength and currentLength=1
     i go through the string and if i found character that same as character before i increment current length
     else i find the max between maxLength and current length
-    
+
      */
-    public static int maxBlock(String str){
+    public static int findingMaxBlock(String str){
         int maxLength=1;
         int currentLength=1;
 
