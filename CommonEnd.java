@@ -11,6 +11,7 @@ public class CommonEnd {
         for (int i = 0; i < sizeA; i++) {
             arrayA[i] = in.nextInt();
         }
+
         System.out.println("Enter the number of elements in the Second array:");
         int sizeB = in.nextInt();
         int[] arrayB = new int[sizeB];
@@ -31,7 +32,9 @@ public class CommonEnd {
     will return true
      */
     public static boolean arraysEnd(int[] arrayA,int[] arrayB){
-
+        if (arrayA.length == 0 || arrayB.length == 0) {
+            return false;
+        }
         return (arrayA[0] == arrayB[0]) || (arrayA[arrayA.length - 1] == arrayB[arrayB.length - 1]);
     }
 }
