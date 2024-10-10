@@ -1,5 +1,4 @@
-
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 
 public class ContainsNearbyDuplicate {
@@ -9,32 +8,23 @@ public class ContainsNearbyDuplicate {
         boolean result1 = containsNearbyDuplicate(input1, k1);
         System.out.println("Output: " + result1);
 
-        List<Integer> input2 = List.of(1, 0, 1, 1);
-        int k2 = 1;
-        boolean result2 = containsNearbyDuplicate(input2, k2);
-        System.out.println("Output: " + result2);
-
-        List<Integer> input3 = List.of(1, 2, 3, 1, 2, 3);
-        int k3 = 2;
-        boolean result3 = containsNearbyDuplicate(input3, k3);
-        System.out.println("Output: " + result3);
     }
 
     public static boolean containsNearbyDuplicate(List<Integer> nums, int k) {
-        HashSet<Integer> seen = new HashSet<>();
+        HashMap<Integer, Integer> indexMap = new HashMap<>();
 
         for (int i = 0; i < nums.size(); i++) {
-
-            if (i > k) {
-                seen.remove(nums.get(i - k - 1)); // Remove the element that's out of the window
+            if (indexMap.containsKey(nums.get(i))) {
+                int lastIndex = indexMap.get(nums.get(i));
+                // Check if the absolute difference of indices is <= k
+                if (Math.abs(i - lastIndex) <= k) {
+                    return true; // Found a duplicate within the index range
+                }
             }
-
-            // Check if the current number is already in the set
-            if (!seen.add(nums.get(i))) {
-                return true; // Found a duplicate
-            }
+            // Update the index of the current number
+            indexMap.put(nums.get(i), i);
         }
 
-        return false; // No duplicates found
+        return false; // No duplicates found within the range
     }
 }
