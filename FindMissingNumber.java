@@ -7,7 +7,7 @@ public class FindMissingNumber {
         inputList.add(0);
         inputList.add(1);
 
-        int missingNumber = missingNumber(inputList);
+        int missingNumber = findMissingNumber (inputList);
         System.out.println("Missing number: " + missingNumber);
     }
     //n is Size of the ArrayList
@@ -15,7 +15,7 @@ public class FindMissingNumber {
     // add all numbers from 0 to n to the set
     // remove elements found in the ArrayList from the set
     // remaining element in the set is the missing number
-    public static int missingNumber(ArrayList<Integer> nums){
+    public static int findMissingNumber (ArrayList<Integer> nums){
         int n = nums.size();
         HashSet<Integer> setOfnumber = new HashSet<>();
         for (int i = 0; i <= n; i++) {
