@@ -1,64 +1,40 @@
-import java.util.ArrayList;
-import java.util.HashMap;
+
+import java.util.HashSet;
+import java.util.List;
 
 public class ContainsNearbyDuplicate {
-    public static void main(String[] args){
-        ArrayList<Integer> input1 = new ArrayList<>();
-        input1.add(1);
-        input1.add(2);
-        input1.add(3);
-        input1.add(1);
-
+    public static void main(String[] args) {
+        List<Integer> input1 = List.of(1, 2, 3, 1);
         int k1 = 3;
         boolean result1 = containsNearbyDuplicate(input1, k1);
         System.out.println("Output: " + result1);
 
-        ArrayList<Integer> input2 = new ArrayList<>();
-        input2.add(1);
-        input2.add(0);
-        input2.add(1);
-        input2.add(1);
-
+        List<Integer> input2 = List.of(1, 0, 1, 1);
         int k2 = 1;
         boolean result2 = containsNearbyDuplicate(input2, k2);
         System.out.println("Output: " + result2);
 
-        ArrayList<Integer> input3 = new ArrayList<>();
-        input3.add(1);
-        input3.add(2);
-        input3.add(3);
-        input3.add(1);
-        input3.add(2);
-        input3.add(3);
-
+        List<Integer> input3 = List.of(1, 2, 3, 1, 2, 3);
         int k3 = 2;
         boolean result3 = containsNearbyDuplicate(input3, k3);
         System.out.println("Output: " + result3);
     }
 
-    
-    //Check if the number already exists in the map
-    //Check if the difference between them is k
-    // return true if Found a duplicate within index range
-    //Update the index of the current number
-    // return false if no duplicates found within the range
-    public static boolean containsNearbyDuplicate(ArrayList<Integer> nums, int k) {
-        HashMap<Integer, Integer> indexMap = new HashMap<>();
+    public static boolean containsNearbyDuplicate(List<Integer> nums, int k) {
+        HashSet<Integer> seen = new HashSet<>();
 
         for (int i = 0; i < nums.size(); i++) {
 
-            if (indexMap.containsKey(nums.get(i))) {
-                int lastIndex = indexMap.get(nums.get(i));
-
-                if (i - lastIndex <= k) {
-                    return true;
-                }
+            if (i > k) {
+                seen.remove(nums.get(i - k - 1)); // Remove the element that's out of the window
             }
 
-            indexMap.put(nums.get(i), i);
+            // Check if the current number is already in the set
+            if (!seen.add(nums.get(i))) {
+                return true; // Found a duplicate
+            }
         }
 
-        return false;
+        return false; // No duplicates found
     }
-
 }
