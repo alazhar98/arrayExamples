@@ -1,36 +1,27 @@
-import java.util.ArrayList;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class CommonCharacters {
-    public static void main(String[] args ){
-        ArrayList<Character> input1 = new ArrayList<>();
-        input1.add('h');
-        input1.add('e');
-        input1.add('l');
-        input1.add('l');
-        input1.add('o');
-
-        ArrayList<Character> input2 = new ArrayList<>();
-        input2.add('w');
-        input2.add('o');
-        input2.add('r');
-        input2.add('l');
-        input2.add('d');
+    public static void main(String[] args) {
+        List<Character> input1 = List.of('h', 'e', 'l', 'l', 'o');
+        List<Character> input2 = List.of('w', 'o', 'r', 'l', 'd');
 
         System.out.println("Output: " + findCommonCharacters(input1, input2));
-
     }
-    // Loop through the first ArrayList
-    // Check if the character is in the second ArrayList and not already in the common list
-    // add the character to the list af its common
-    public static ArrayList<Character> findCommonCharacters(ArrayList<Character> str1, ArrayList<Character> str2) {
-        ArrayList<Character> commonChars = new ArrayList<>();
+
+    public static Set<Character> findCommonCharacters(List<Character> str1, List<Character> str2) {
+        Set<Character> commonChars = new HashSet<>();
+        Set<Character> setStr2 = new HashSet<>(str2); // Convert second list to a set
 
         for (Character c : str1) {
-
-            if (str2.contains(c) && !commonChars.contains(c)) {
-                commonChars.add(c);
+            // Check if character is in the second set
+            if (setStr2.contains(c)) {
+                commonChars.add(c); // Add to common characters set
             }
         }
-        return commonChars;
+
+        return commonChars; // Return the set of common characters
     }
 }
