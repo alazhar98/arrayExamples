@@ -11,20 +11,13 @@ public class ContainsNearbyDuplicate {
     }
 
     public static boolean containsNearbyDuplicate(List<Integer> nums, int k) {
-        HashMap<Integer, Integer> indexMap = new HashMap<>();
-
         for (int i = 0; i < nums.size(); i++) {
-            if (indexMap.containsKey(nums.get(i))) {
-                int lastIndex = indexMap.get(nums.get(i));
-                // Check if the absolute difference of indices is <= k
-                if (Math.abs(i - lastIndex) <= k) {
-                    return true; // Found a duplicate within the index range
+            for (int j = i + 1; j <= Math.min(i + k, nums.size() - 1); j++) {
+                if (nums.get(i).equals(nums.get(j))) {
+                    return true; // Found duplicate
                 }
             }
-            // Update the index of the current number
-            indexMap.put(nums.get(i), i);
         }
-
-        return false; // No duplicates found within the range
+        return false; // No duplicates 
     }
 }
