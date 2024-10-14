@@ -1,50 +1,44 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class DistinctElementsInWindow {
-    public static void main(String[] args){
-        ArrayList<Integer> input = new ArrayList<>();
-        input.add(1);
-        input.add(2);
-        input.add(1);
-        input.add(3);
-        input.add(4);
-        input.add(2);
-        input.add(3);
-
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 1, 3, 4, 2, 3};
         int k = 4;
-
-        ArrayList<Integer> result = countDistinctInWindow(input, k);
+        ArrayList<Integer> result = countDistinctInWindow(arr, k);
         System.out.println("Output: " + result);
-
     }
 
+    public static ArrayList<Integer> countDistinctInWindow(int[] arr, int k) {
+        ArrayList<Integer> result = new ArrayList<>();
+        int[] count = new int[10];
 
-    public static ArrayList<Integer> countDistinctInWindow(ArrayList<Integer> arr, int k) {
-        ArrayList<Integer> result = new ArrayList<>();// result arrayList
-        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
 
-        //to Initialize the first window
         for (int i = 0; i < k; i++) {
-            // put every index in the array on frequency map
-            frequencyMap.put(arr.get(i), frequencyMap.getOrDefault(arr.get(i), 0) + 1);
+            count[arr[i]]++;
         }
-        result.add(frequencyMap.size());//  Count elements in the first window
 
-        for (int i = k; i < arr.size(); i++) {
-            // Remove the element
-            int outgoing = arr.get(i - k);
-            frequencyMap.put(outgoing, frequencyMap.get(outgoing) - 1);
-            if (frequencyMap.get(outgoing) == 0) {
-                frequencyMap.remove(outgoing); // Remove from map if count is 0
-            }
-            // Add the new element coming into the window
-            int incoming = arr.get(i);
-            frequencyMap.put(incoming, frequencyMap.getOrDefault(incoming, 0) + 1);
+        result.add(countDistinct(count));
 
-            // Add the count of elements to the result
-            result.add(frequencyMap.size());
+        for (int i = k; i < arr.length; i++) {
+
+            count[arr[i]]++;
+
+            count[arr[i - k]]--;
+
+
+            result.add(countDistinct(count));
         }
+
         return result;
+    }
+
+    private static int countDistinct(int[] count) {
+        int distinctCount = 0;
+        for (int i = 1; i < count.length; i++) {
+            if (count[i] > 0) {
+                distinctCount++;
+            }
+        }
+        return distinctCount;
     }
 }
