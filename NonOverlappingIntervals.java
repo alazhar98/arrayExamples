@@ -31,7 +31,7 @@ public class NonOverlappingIntervals {
         }
         System.out.println("Selected intervals: " + selectedIntervals);
 
-        return count; // Return the maximum count of non-overlapping intervals
+        return count;
     }
 
 }
