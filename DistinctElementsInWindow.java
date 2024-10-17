@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class DistinctElementsInWindow {
@@ -12,9 +11,9 @@ public class DistinctElementsInWindow {
     }
 /*
 Return empty if window size is greater than array length or invalid
-Remove the element going out of the window
-Add the new element coming into the window
-Store the count of distinct elements
+Assuming input numbers are in the range [1, 100]
+Slide the window
+Remove the first element of the previous window
  */
     public static List<Integer> countDistinctInSlidingWindow(int[] arr, int k) {
         List<Integer> result = new ArrayList<>();
@@ -22,19 +21,31 @@ Store the count of distinct elements
             return result;
         }
 
-        HashSet<Integer> set = new HashSet<>();
+        int[] count = new int[101];
+        int distinctCount = 0;
 
 
         for (int i = 0; i < k; i++) {
-            set.add(arr[i]);
+            if (count[arr[i]] == 0) {
+                distinctCount++;
+            }
+            count[arr[i]]++;
         }
-        result.add(set.size());
+        result.add(distinctCount);
 
 
         for (int i = k; i < arr.length; i++) {
-            set.remove(arr[i - k]);
-            set.add(arr[i]);
-            result.add(set.size());
+            // Add the next element
+            if (count[arr[i]] == 0) {
+                distinctCount++;
+            }
+            count[arr[i]]++;
+            count[arr[i - k]]--;
+            if (count[arr[i - k]] == 0) {
+                distinctCount--;
+            }
+
+            result.add(distinctCount);
         }
 
         return result;
