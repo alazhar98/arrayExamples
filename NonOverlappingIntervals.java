@@ -21,12 +21,12 @@ public class NonOverlappingIntervals {
         int lastEndTime = Integer.MIN_VALUE;
 
         for (int[] interval : intervals) {
-            // If the start time is greater than or equal to the last end time
+
             if (interval[0] >= lastEndTime) {
-                selectedIntervals.add(interval[0]); // Track the start time (optional)
-                selectedIntervals.add(interval[1]); // Track the end time
-                count++; // Select this interval
-                lastEndTime = interval[1]; // Update the last end time
+                selectedIntervals.add(interval[0]);
+                selectedIntervals.add(interval[1]);
+                count++;
+                lastEndTime = interval[1];
             }
         }
         System.out.println("Selected intervals: " + selectedIntervals);
