@@ -7,11 +7,11 @@ public class MapBully {
 
         map.put("a","candy");
         map.put("b","dirty");
-        // if map contain a and map get a not equal to null and map get a is not empty
+        // if map contain a 
         // initialize value to a
         // put b is the value for a "candy"
         // put a is ""
-        if (map.containsKey("a")&& map.get("a")!=null&& !map.get("a").isEmpty()){
+        if (map.containsKey("a")){
             String value = map.get("a");
             map.put("b",value);
             map.put("a","");
