@@ -27,6 +27,7 @@ public class happyG {
                 if (!leftHappy && !rightHappy) {
                     return false;
                 }
+
             }
         }
         return true;
