@@ -24,7 +24,6 @@ public class WordLength {
                 result.put(str, str.length());
 
             }
-
         }
         return result;
     }
