@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class WordCounter {
     public static void main(String[] args ){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter strings (type 'exit' to finish):");
+        System.out.println("Enter strings make spaces between characters:");
 
         String input = scanner.nextLine();
 
