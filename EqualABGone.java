@@ -8,12 +8,13 @@ public class EqualABGone {
         Map<String, String> foodMap = new HashMap<>();
 
         System.out.println("Enter food items and their toppings  (type 'exit' to finish):");
-
-        while (true) {
+        boolean c = true;
+        while (c) {
             System.out.print("Enter food item (key): ");
             String key = scanner.nextLine();
             if (key.equalsIgnoreCase("exit")) {
-                break;
+                c=false;
+
             }
             System.out.print("Enter topping (value): ");
             String value = scanner.nextLine();
