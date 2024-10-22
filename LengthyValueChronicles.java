@@ -8,12 +8,12 @@ public class LengthyValueChronicles {
         Map<String, String> foodMap = new HashMap<>();
 
         System.out.println("Enter food items and their values (type 'exit' to finish):");
-
-        while (true) {
+        boolean c = true;
+        while (c) {
             System.out.print("Enter key: ");
             String key = scanner.nextLine();
             if (key.equalsIgnoreCase("exit")) {
-                break;
+                c=false;
             }
             System.out.print("Enter value: ");
             String value = scanner.nextLine();
