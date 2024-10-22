@@ -18,7 +18,7 @@ public class FirstCharConcatenation {
 
         // check if the user input is not empty
         for (String str :strings){
-            if (str.length()>0){
+            if (!str.isEmpty()){
                 String firstCharacter = String.valueOf(str.charAt(0));
 
                 // check if the map contain first character
