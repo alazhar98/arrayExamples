@@ -23,6 +23,7 @@ public class WordCounter {
                 count.put(str,count.get(str)+1);
 
             }
+            // put count equal 1
             else {
                 count.put(str,1);
             }
