@@ -26,7 +26,6 @@ public class WordLength {
             }
 
         }
-
         return result;
     }
 
