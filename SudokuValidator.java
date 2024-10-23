@@ -1,76 +1,49 @@
-import java.util.Arrays;
+
 import java.util.HashSet;
-import java.util.List;
 
 public class SudokuValidator {
     public static void main(String[] args) {
 
-        List<List<Character>> board = Arrays.asList(
-                Arrays.asList('5', '3', '.', '.', '7', '.', '.', '.', '.'),
-                Arrays.asList('6', '.', '.', '1', '9', '5', '.', '.', '.'),
-                Arrays.asList('.', '9', '8', '.', '.', '.', '.', '6', '.'),
-                Arrays.asList('8', '.', '.', '.', '6', '.', '.', '.', '3'),
-                Arrays.asList('4', '.', '.', '8', '.', '3', '.', '.', '1'),
-                Arrays.asList('7', '.', '.', '.', '2', '.', '.', '.', '6'),
-                Arrays.asList('.', '6', '.', '.', '.', '.', '2', '8', '.'),
-                Arrays.asList('.', '.', '.', '4', '1', '9', '.', '.', '5'),
-                Arrays.asList('.', '.', '.', '.', '8', '.', '.', '7', '9')
-        );
-        boolean isValid = true;
-        for (int r = 0; r < 9; r++) {
-            HashSet<Character> seen = new HashSet<>();
-            for (int c = 0; c < 9; c++) {
-                char num = board.get(r).get(c);
-                if (num != '.') {
-                    if (seen.contains(num)) {
-                        isValid = false;
-                        break;
-                    }
-                    seen.add(num);
-                }
-            }
+        char[][] board = {
+                {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+                {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+                {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+                {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+                {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+                {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+                {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+                {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+                {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
+        };
 
-            if (!isValid) break;
-        }
-        if (isValid) {
-            for (int c = 0; c < 9; c++) {
-                HashSet<Character> seen = new HashSet<>();
-                for (int r = 0; r < 9; r++) {
-                    char num = board.get(r).get(c);
-                    if (num != '.') {
-                        if (seen.contains(num)) {
-                            isValid = false;
-                            break;
-                        }
-                        seen.add(num);
-                    }
-                }
-                if (!isValid) break;
+        System.out.println(isValidSudoku(board));
+    }
+    public static boolean isValidSudoku(char[][] board) {
+        HashSet<Character>[] rows = new HashSet[9];
+        HashSet<Character>[] columns = new HashSet[9];
+        HashSet<Character>[] boxes = new HashSet[9];
 
-            }
-        }
-        if (isValid) {
-            for (int startRow = 0; startRow < 9; startRow += 3) {
-                for (int startCol = 0; startCol < 9; startCol += 3) {
-                    HashSet<Character> seen = new HashSet<>();
-                    for (int r = startRow; r < startRow + 3; r++) {
-                        for (int c = startCol; c < startCol + 3; c++) {
-                            char num = board.get(r).get(c);
-                            if (num != '.') {
-                                if (seen.contains(num)) {
-                                    isValid = false; // Duplicate found in the box
-                                    break;
-                                }
-                                seen.add(num);
-                            }
-                        }
-                        if (!isValid) break;
-                    }
-                    if (!isValid) break;
-                }
-            }
+        for (int i = 0; i < 9; i++) {
+            rows[i] = new HashSet<>();
+            columns[i] = new HashSet<>();
+            boxes[i] = new HashSet<>();
         }
 
-        System.out.println("Output: " + isValid);
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                char num = board[i][j];
+
+                if (num == '.') continue;
+
+                int boxIndex = (i / 3) * 3 + (j / 3);
+                if (rows[i].contains(num) || columns[j].contains(num) || boxes[boxIndex].contains(num)) {
+                    return false;
+                }
+                rows[i].add(num);
+                columns[j].add(num);
+                boxes[boxIndex].add(num);
+            }
+        }
+        return true;
     }
 }
