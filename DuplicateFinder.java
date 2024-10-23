@@ -34,6 +34,7 @@ public class DuplicateFinder {
             if (posList.size() > 1) {
                 System.out.println(num + ": Occurs " + posList.size() + " times at positions " + posList);
                 sum += num; // Add to the sum
+
             }
         }
         System.out.println("Sum "+ sum);
