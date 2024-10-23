@@ -30,6 +30,7 @@ public class DuplicateFinder {
             int num = entry.getKey();
             List<Integer> posList = entry.getValue();
 
+
             // if its appears more than one time
             if (posList.size() > 1) {
                 System.out.println(num + ": Occurs " + posList.size() + " times at positions " + posList);
