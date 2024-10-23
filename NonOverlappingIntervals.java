@@ -1,37 +1,44 @@
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.*;
 
 public class NonOverlappingIntervals {
     public static void main(String[] args){
-        int[][] intervals = {{1, 2}, {2, 3}, {3, 4}, {1, 3}};
-        int result = maxNonOverlappingIntervals(intervals);
-        System.out.println("Output: " + result);
-    }
+        List<List<Integer>> intervals = new ArrayList<>(List.of(
+                List.of(1, 2),
+                List.of(2, 3),
+                List.of(3, 4),
+                List.of(1, 3)
+        ));
+        maxNonOverlappingIntervals(intervals);
+        }
     /*
     Sort intervals by their end times
      If the start time is greater than or equal to the last end time then , Track the start time and Track the end time
      and increment the count an update the last end time
      Return the maximum count of non-overlapping intervals
      */
-    public static int maxNonOverlappingIntervals(int[][] intervals){
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[1], b[1]));
-        HashSet<Integer> selectedIntervals = new HashSet<>();
+    public static void maxNonOverlappingIntervals(List<List<Integer>> intervals){
+        Collections.sort(intervals, (a, b) -> a.get(1) - b.get(1));
+        System.out.println(intervals);
+        Set<List<Integer>> selectedIntervals = new HashSet<>();
 
-        int count = 0;
+        int previousEnd = 0;
         int lastEndTime = Integer.MIN_VALUE;
 
-        for (int[] interval : intervals) {
+        for (List<Integer> num : intervals) {
+            int start = num.get(0);
+            int end = num.get(1);
 
-            if (interval[0] >= lastEndTime) {
-                selectedIntervals.add(interval[0]);
-                selectedIntervals.add(interval[1]);
-                count++;
-                lastEndTime = interval[1];
+            if (start >= previousEnd) {
+                selectedIntervals.add(num);
+                previousEnd = end;
             }
+
         }
+        System.out.println("Non-Overlapping Intervals " + selectedIntervals);
+        System.out.println("number of Non-Overlapping Intervals= " + selectedIntervals.size());
         System.out.println("Selected intervals: " + selectedIntervals);
 
-        return count;
+
     }
 
 }
