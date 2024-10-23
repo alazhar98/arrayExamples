@@ -44,6 +44,7 @@ public class SudokuValidator {
                 boxes[boxIndex].add(num);
             }
         }
+
         return true;
     }
 }
