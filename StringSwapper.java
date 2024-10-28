@@ -6,7 +6,6 @@ public class StringSwapper {
         System.out.println(Arrays.toString(swapFirstCharStrings(new String[]{"ax", "bx", "cx", "cy", "by", "ay", "aaa", "azz"})));
 
     }
-
     /*
     i make hashMap
     for loop for swapping
