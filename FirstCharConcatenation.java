@@ -10,10 +10,10 @@ public class FirstCharConcatenation {
         String input = scanner.nextLine();
 
         String[] strings = input.split("\\s+");
-        Map<String, String> result = firstChar(strings);
+        Map<String, String> result = collectSameFirstChar(strings);
         System.out.println("Result: " + result);
     }
-    public static Map<String, String> firstChar(String[] strings){
+    public static Map<String, String> collectSameFirstChar(String[] strings){
         Map<String,String> result = new HashMap<>();
 
         // check if the user input is not empty
